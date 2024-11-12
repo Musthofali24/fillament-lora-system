@@ -32,10 +32,12 @@ class AdminPanelProvider extends PanelProvider
             ->sidebarCollapsibleOnDesktop(true)
             ->id('admin')
             ->path('admin')
+            ->brandLogo(asset('images/LogoWSIlight.svg'))
+            ->darkModeBrandLogo(asset('images/LogoWSIdark.svg'))
             ->brandName('PT. Wiratama')
             ->login()
             ->colors([
-                'primary' => Color::Amber,
+                'primary' => Color::Blue,
             ])
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\\Filament\\Resources')
             ->discoverPages(in: app_path('Filament/Pages'), for: 'App\\Filament\\Pages')
@@ -68,11 +70,6 @@ class AdminPanelProvider extends PanelProvider
                     ->setTitle('My Profile')
                     ->shouldRegisterNavigation(false)
                     ->setIcon('heroicon-o-user')
-                    ->shouldShowAvatarForm(
-                        value: true,
-                        directory: 'avatars',
-                        rules: 'mimes:jpeg,png|max:1024'
-                    )
                     ->shouldShowBrowserSessionsForm(false)
                     ->shouldShowDeleteAccountForm(false),
             ]);

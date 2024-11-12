@@ -13,12 +13,17 @@ return new class extends Migration
     {
         Schema::create('gateways', function (Blueprint $table) {
             $table->id();
-            $table->integer('gateway_id');
+            $table->integer('gateway_id')->unique();
             $table->string('local_address');
-            $table->string('spreading_factor');
-            $table->string('signal_bandwidth');
-            $table->string('measureGateway_interval');
-            $table->string('configGateway_interval');
+            $table->integer('spreading_factor');
+            $table->integer('signal_bandwidth');
+            $table->integer('measureGateway_interval');
+            $table->integer('configGateway_interval');
+            $table->string('wifi_ssid')->required();
+            $table->string('wifi_password')->required();
+            $table->string('config_gateway_api')->required();
+            $table->string('config_node_api')->required();
+            $table->string('sensor_api')->required();
             $table->timestamps();
         });
     }

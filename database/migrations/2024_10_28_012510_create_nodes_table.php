@@ -13,16 +13,21 @@ return new class extends Migration
     {
         Schema::create('nodes', function (Blueprint $table) {
             $table->id();
-            $table->integer('node_id')->unique(); // Tambahkan unique jika perlu
-            $table->foreignId('gateway_id')->constrained('gateways')->onDelete('cascade'); // Menggunakan foreign key
+            $table->integer('node_id')->unique();
+            $table->integer('gateway_id');
             $table->string('local_address');
-            $table->integer('spreading_factor'); // Sesuaikan tipe data
-            $table->integer('signal_bandwidth'); // Sesuaikan tipe data
-            $table->integer('measure_interval'); // Sesuaikan tipe data
-            $table->bigInteger('last_seen'); // Sesuaikan tipe data
+            $table->string('gateway_address');
+            $table->integer('spreading_factor');
+            $table->integer('signal_bandwidth');
+            $table->integer('measure_interval');
+            $table->float('speedOfSound');
             $table->timestamps();
+
+            $table->foreign('gateway_id')
+                ->references('gateway_id')
+                ->on('gateways')
+                ->onDelete('cascade');
         });
-        
     }
 
     /**

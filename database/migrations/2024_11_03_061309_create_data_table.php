@@ -14,8 +14,13 @@ return new class extends Migration
         Schema::create('data', function (Blueprint $table) {
             $table->id();
             $table->integer('node_id');
-            $table->integer('water_level');
+            $table->float('water_level');
             $table->timestamps();
+
+            $table->foreign('node_id')
+                ->references('node_id')
+                ->on('nodes')
+                ->onDelete('cascade');
         });
     }
 
